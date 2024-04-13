@@ -57,3 +57,25 @@ jobs:
           with:
             service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
             api-key: ${{ secrets.MY_RENDER_API_KEY }}
+
+        - name: Deploy to Render
+          on:
+          push:
+                branches:
+                  - main
+            
+            jobs:
+              deploy:
+                runs-on: ubuntu-latest
+            
+                steps:
+                  - name: Checkout code
+                    uses: actions/checkout@v4
+            
+                  # Add build steps here (e.g., installing dependencies, building your application)
+            
+                  - name: Deploy to Render
+                    run: |
+                      curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer ${{ secrets.RENDER_TOKEN }}" \
+                      -d '{"branch": "main", "commit_hash": "${{ github.sha }}"}' \
+                      https://api.render.com/v1/deploys/github/${{ secrets.RENDER_PROJECT_ID }}
