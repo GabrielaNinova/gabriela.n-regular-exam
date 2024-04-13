@@ -21,6 +21,8 @@ jobs:
         cache: 'npm'
     - name: Install NPM dependencies
       run: npm install
+    - name: Start the application
+      run: npm start &
     - name: Run unit tests
       run: npm run test:unit
     - name: Display SoftUni username
@@ -41,5 +43,7 @@ jobs:
         run: npm install
       - name: Install Playwright Browsers
         run: npx playwright install
+      - name: Start the application
+        run: npm start &
       - name: Run UI tests
         run: npm run test:ui
