@@ -14,10 +14,10 @@ jobs:
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v3
-    - name: Use Node.js version 20.x
+    - name: Use Node.js version 21.x
       uses: actions/setup-node@v3
       with:
-        node-version: 20.x
+        node-version: 21.x
         cache: 'npm'
     - name: Install NPM dependencies
       run: npm install
